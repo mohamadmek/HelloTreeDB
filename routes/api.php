@@ -24,8 +24,8 @@ Route::get('slides', 'SlideController@index');
 Route::get('abouttexts', 'AbouttextController@index');
 Route::get('brochures', 'BrochureController@index');
 Route::get('testimonials', 'TestimonialController@index');
+Route::get('/user/{email}', 'AuthController@show');
 Route::group(['middleware' => ['jwt.verify']], function() {
-
 
 Route::get('slides/{id}', 'SlideController@show');
 Route::post('slides', 'SlideController@store');
