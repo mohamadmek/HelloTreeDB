@@ -17,8 +17,8 @@ class CreateAbouttextsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('title');
-            $table->string('textfirst');
-            $table->string('titlesecond');
+            $table->text('textfirst');
+            $table->text('titlesecond');
         });
     }
 
