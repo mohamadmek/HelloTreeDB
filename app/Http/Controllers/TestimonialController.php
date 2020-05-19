@@ -55,7 +55,7 @@ class TestimonialController extends Controller
             // Filename to Store
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             // Upload the image
-            $path = $request->file('image')->storeAs('public/images', $fileNameToStore);
+            $path = $request->file('image')->storeAs('images', $fileNameToStore);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -138,7 +138,7 @@ class TestimonialController extends Controller
             // Filename to Store
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             // Upload the image
-            $path = $request->file('image')->storeAs('public/images', $fileNameToStore);
+            $path = $request->file('image')->storeAs('images', $fileNameToStore);
 
             $testimonial->image = $fileNameToStore;
         }
@@ -161,11 +161,18 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $testimonials = Testimonial::where('id', $id)->delete();
-
-        if(!$testimonials){
+    public function destroy($id, Request $request)
+    {   
+        $i = 1;
+        $testimonial = Testimonial::where('id', $id);
+        // $image_path = 'images/'.$request->input('image');
+        // unlink($image_path);
+        $image_path = 'images/'.$request->input('image');
+        unlink($image_path);
+        $testimonial->delete();
+        
+        
+        if(!$testimonial){
             return response()->json([
                 'status' => 'failed',
                 'message' => 'could not delete testimonials with id $id'  

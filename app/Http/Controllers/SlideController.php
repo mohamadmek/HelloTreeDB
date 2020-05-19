@@ -57,7 +57,7 @@ class SlideController extends Controller
             // Filename to Store
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             // Upload the image
-            $path = $request->file('image')->storeAs('public/images', $fileNameToStore);
+            $path = $request->file('image')->storeAs('images', $fileNameToStore);
         } else {
             $fileNameToStore = time().'noimage.jpg';
         }
@@ -143,7 +143,7 @@ class SlideController extends Controller
             // Filename to Store
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             // Upload the image
-            $path = $request->file('image')->storeAs('public/images', $fileNameToStore);
+            $path = $request->file('image')->storeAs('images', $fileNameToStore);
 
             $slide->image = $fileNameToStore;
         }
@@ -173,7 +173,7 @@ class SlideController extends Controller
         // Storage::delete($request->input('image'));
         // // Storage::disk('public')->delete(`/images/` . $request->input('image'));
         // $image_path = 'storage'.public_path().'/images/'.$request->input('image');
-        $image_path = '/Users/user/Documents/hellotreedb/storage/app/public/images/'.$request->input('image');
+        $image_path = 'images/'.$request->input('image');
         unlink($image_path);
         $slide->delete();
         if(!$slide){
