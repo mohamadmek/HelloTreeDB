@@ -20,4 +20,4 @@ php artisan serve
 
 ## If i don't push .env
 
-php artisan jwt:secret
+php artisan jwt:secret and you need to configure it
